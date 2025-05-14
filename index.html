@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video src="./6310-190925747_small.mp4" loop autoplay muted></video>
+    <h1>Digital Clock</h1>
+    <div class="main">
+        <div class="time">
+            <span id="hours"></span> :
+            <span id="minutes"></span> :
+            <span id="seconds"></span>
+            <span id="ampm"></span>
+        </div>
+        <div class="date">
+            <p id="date"></p>            
+        </div>
+    </div>
+
+    <script>
+        let hours = document.getElementById("hours")
+        let minutes = document.getElementById("minutes")
+        let seconds = document.getElementById("seconds")
+        let ampm = document.getElementById("ampm")
+        let date = document.getElementById("date")
+
+        let ClockTime = ()=>{
+            let nowDate = new Date()
+            hours.innerHTML = nowDate.getHours()
+            minutes.innerHTML = nowDate.getMinutes()
+            seconds.innerHTML = nowDate.getSeconds()
+            date.innerHTML = nowDate.toLocaleDateString()
+            
+            
+            if(hours.innerHTML == 0){
+                hours.innerHTML = `12`
+            }
+            if(hours.innerHTML >= 12){
+            ampm.innerHTML = "AM"
+            }
+            else{
+                ampm.innerHTML = "PM"
+            }
+            if(hours.innerHTML < 10){
+                hours.innerHTML = `0${hours.innerHTML}`
+            }
+            if(seconds.innerHTML < 10){
+                seconds.innerHTML = `0${seconds.innerHTML}`
+            }
+            if(minutes.innerHTML < 10 ){
+                minutes.innerHTML = `0${minutes.innerHTML}`
+            }
+
+
+        }
+        setInterval(()=>{
+            ClockTime()
+        },1000)
+    </script>
+</body>
+</html>
